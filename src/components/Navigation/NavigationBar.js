@@ -1,5 +1,4 @@
 import React from "react";
-import "bootstrap/dist/css/bootstrap.css";
 import { Container, Nav, Navbar } from "react-bootstrap";
 import CartButton from "../Cart/CartButton";
 
@@ -19,7 +18,7 @@ const NavigationBar = (props) => {
               ABOUT
             </Nav.Link>
           </Nav>
-          <CartButton value="Cart" />
+          <CartButton handleCartModal={props.handleCartModal} />
         </Container>
       </Navbar>
     </>

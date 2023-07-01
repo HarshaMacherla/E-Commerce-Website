@@ -1,5 +1,4 @@
 import React from "react";
-import "bootstrap/dist/css/bootstrap.css";
 
 const GenericHeader = (props) => {
   return (
@@ -11,7 +10,7 @@ const GenericHeader = (props) => {
         fontFamily: "Times New Roman",
       }}
     >
-      <h1 className="mx-auto" style={{ fontSize: "75px" }}>
+      <h1 className="mx-auto p-4" style={{ fontSize: "75px" }}>
         The Generics
       </h1>
     </header>

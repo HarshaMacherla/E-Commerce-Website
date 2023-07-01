@@ -1,7 +1,7 @@
 import React from "react";
-import "bootstrap/dist/css/bootstrap.css";
-import { Button, Container, Row, Col } from "react-bootstrap";
+import { Button, Container, Row, Col, Modal } from "react-bootstrap";
 import productsArr from "./ProductsArray";
+import Cart from "../Cart/Cart";
 
 const Products = (props) => {
   return (
@@ -40,11 +40,24 @@ const Products = (props) => {
         </Row>
       </Container>
       <Button
-        className="btn-secondary m-5"
+        variant="secondary"
+        className="m-5"
         style={{ color: "skyblue", fontWeight: "bold" }}
+        onClick={props.handleCartModal}
       >
         See the Cart
       </Button>
+      <Modal show={props.showCartModal} onHide={props.handleCartModal}>
+        <Modal.Header closeButton={true}>
+          <Modal.Title>Cart</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <Cart />
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="info">Purchase</Button>
+        </Modal.Footer>
+      </Modal>
     </Container>
   );
 };
