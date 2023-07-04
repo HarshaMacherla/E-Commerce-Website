@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Products from "./pages/Products";
 import About from "./pages/About";
 import GenericHeader from "./components/Header/GenericHeader";
+import Home from "./pages/Home";
 
 const App = () => {
   const [showCartModal, setShowCartModal] = useState(false);
@@ -31,6 +32,7 @@ const App = () => {
               />
             }
           />
+          <Route path="/home" element={<Home />} />
           <Route path="/about" element={<About />} />
         </Routes>
       </Router>

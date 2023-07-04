@@ -8,11 +8,11 @@ import Cart from "../Cart/Cart";
 const NavigationBar = (props) => {
   return (
     <>
-      <Navbar bg="dark" variant="dark">
+      <Navbar bg="dark" className="mx-0" variant="dark">
         <Container className="d-flex justify-content-between">
           <Nav className="mx-auto">
             <NavLink
-              to="/"
+              to="/home"
               style={{
                 color: "white",
                 textDecoration: "none",

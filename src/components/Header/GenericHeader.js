@@ -10,9 +10,7 @@ const GenericHeader = (props) => {
         fontFamily: "Times New Roman",
       }}
     >
-      <h1 className="mx-auto p-4" style={{ fontSize: "75px" }}>
-        The Generics
-      </h1>
+      <h1 style={{ fontSize: "75px", margin: "0" }}>The Generics</h1>
     </header>
   );
 };
