@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import NavigationBar from "./components/Navigation/NavigationBar";
-import GenericHeader from "./components/Header/GenericHeader";
-import Products from "./components/Products/Products";
 import { CartContextWrapper } from "./cart-context/cart-context";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Products from "./pages/Products";
+import About from "./pages/About";
+import GenericHeader from "./components/Header/GenericHeader";
 
 const App = () => {
   const [showCartModal, setShowCartModal] = useState(false);
@@ -13,12 +15,25 @@ const App = () => {
 
   return (
     <CartContextWrapper>
-      <NavigationBar handleCartModal={handleCartModal} />
-      <GenericHeader handleCartModal={handleCartModal} />
-      <Products
-        showCartModal={showCartModal}
-        handleCartModal={handleCartModal}
-      />
+      <Router>
+        <NavigationBar
+          handleCartModal={handleCartModal}
+          showCartModal={showCartModal}
+        />
+        <GenericHeader />
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <Products
+                handleCartModal={handleCartModal}
+                showCartModal={showCartModal}
+              />
+            }
+          />
+          <Route path="/about" element={<About />} />
+        </Routes>
+      </Router>
     </CartContextWrapper>
   );
 };

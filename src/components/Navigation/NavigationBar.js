@@ -1,24 +1,65 @@
 import React from "react";
-import { Container, Nav, Navbar } from "react-bootstrap";
+import { Container, Navbar, Nav } from "react-bootstrap";
 import CartButton from "../Cart/CartButton";
+import { NavLink } from "react-router-dom";
+import { Modal, Button } from "react-bootstrap";
+import Cart from "../Cart/Cart";
 
 const NavigationBar = (props) => {
   return (
     <>
-      <Navbar bg="dark" data-bs-theme="dark">
+      <Navbar bg="dark" variant="dark">
         <Container className="d-flex justify-content-between">
           <Nav className="mx-auto">
-            <Nav.Link href="/" style={{ color: "white" }}>
+            <NavLink
+              to="/"
+              style={{
+                color: "white",
+                textDecoration: "none",
+                fontSize: "larger",
+                margin: "0px 10px",
+              }}
+            >
               HOME
-            </Nav.Link>
-            <Nav.Link href="/" style={{ color: "white" }}>
+            </NavLink>
+            <NavLink
+              to="/"
+              style={{
+                color: "white",
+                textDecoration: "none",
+                fontSize: "larger",
+                margin: "0px 10px",
+              }}
+            >
               STORE
-            </Nav.Link>
-            <Nav.Link href="/" style={{ color: "white" }}>
+            </NavLink>
+            <NavLink
+              to="/about"
+              style={{
+                color: "white",
+                textDecoration: "none",
+                fontSize: "larger",
+                margin: "0px 10px",
+              }}
+            >
               ABOUT
-            </Nav.Link>
+            </NavLink>
           </Nav>
-          <CartButton handleCartModal={props.handleCartModal} />
+          <CartButton
+            showCartModal={props.showCartModal}
+            handleCartModal={props.handleCartModal}
+          />
+          <Modal show={props.showCartModal} onHide={props.handleCartModal}>
+            <Modal.Header closeButton={true}>
+              <Modal.Title>Cart</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+              <Cart />
+            </Modal.Body>
+            <Modal.Footer>
+              <Button variant="info">Purchase</Button>
+            </Modal.Footer>
+          </Modal>
         </Container>
       </Navbar>
     </>
