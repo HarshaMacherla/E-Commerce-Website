@@ -6,6 +6,7 @@ import Products from "./pages/Products";
 import About from "./pages/About";
 import GenericHeader from "./components/Header/GenericHeader";
 import Home from "./pages/Home";
+import ContactUs from "./pages/ContactUs";
 
 const App = () => {
   const [showCartModal, setShowCartModal] = useState(false);
@@ -34,6 +35,7 @@ const App = () => {
           />
           <Route path="/home" element={<Home />} />
           <Route path="/about" element={<About />} />
+          <Route path="/contactus" element={<ContactUs />} />
         </Routes>
       </Router>
     </CartContextWrapper>
