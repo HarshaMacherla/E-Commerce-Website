@@ -18,9 +18,7 @@ const NavigationBar = (props) => {
                 textDecoration: "none",
                 fontSize: "larger",
                 margin: "0px 10px",
-                backgroundColor: "#54504F",
                 padding: "2px 5px",
-                borderRadius: "3px",
               }}
             >
               HOME
@@ -32,9 +30,7 @@ const NavigationBar = (props) => {
                 textDecoration: "none",
                 fontSize: "larger",
                 margin: "0px 10px",
-                backgroundColor: "#54504F",
                 padding: "2px 5px",
-                borderRadius: "3px",
               }}
             >
               STORE
@@ -46,9 +42,7 @@ const NavigationBar = (props) => {
                 textDecoration: "none",
                 fontSize: "larger",
                 margin: "0px 10px",
-                backgroundColor: "#54504F",
                 padding: "2px 5px",
-                borderRadius: "3px",
               }}
             >
               ABOUT
@@ -60,9 +54,7 @@ const NavigationBar = (props) => {
                 textDecoration: "none",
                 fontSize: "larger",
                 margin: "0px 10px",
-                backgroundColor: "#54504F",
                 padding: "2px 5px",
-                borderRadius: "3px",
               }}
             >
               CONTACT US

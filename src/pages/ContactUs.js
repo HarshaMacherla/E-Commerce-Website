@@ -52,7 +52,11 @@ const ContactUs = () => {
 
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Label>Email address</Form.Label>
-          <Form.Control type="email" placeholder="Enter email" ref={emailRef} />
+          <Form.Control
+            type="email"
+            placeholder="Enter your email"
+            ref={emailRef}
+          />
           <Form.Text className="text-muted"></Form.Text>
         </Form.Group>
 
@@ -60,7 +64,7 @@ const ContactUs = () => {
           <Form.Label>Mobile Number</Form.Label>
           <Form.Control
             type="number"
-            placeholder="Mobile number"
+            placeholder="Enter your mobile number"
             ref={mobileRef}
           />
         </Form.Group>
