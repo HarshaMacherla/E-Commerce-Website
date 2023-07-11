@@ -6,6 +6,11 @@ import { Modal, Button } from "react-bootstrap";
 import Cart from "../Cart/Cart";
 
 const NavigationBar = (props) => {
+  const handleLogout = () => {
+    props.setToken(null);
+    localStorage.removeItem("token");
+  };
+
   return (
     <>
       <Navbar bg="dark" className="mx-0" variant="dark">
@@ -59,23 +64,36 @@ const NavigationBar = (props) => {
             >
               CONTACT US
             </NavLink>
-            <NavLink
-              to="/login"
-              style={{
-                color: "white",
-                textDecoration: "none",
-                fontSize: "larger",
-                margin: "0px 10px",
-                padding: "2px 5px",
-              }}
-            >
-              LOGIN
-            </NavLink>
+            {!props.isLoggedIn && (
+              <NavLink
+                to="/login"
+                style={{
+                  color: "white",
+                  textDecoration: "none",
+                  fontSize: "larger",
+                  margin: "0px 10px",
+                  padding: "2px 5px",
+                }}
+              >
+                LOGIN
+              </NavLink>
+            )}
           </Nav>
-          <CartButton
-            showCartModal={props.showCartModal}
-            handleCartModal={props.handleCartModal}
-          />
+          {props.isLoggedIn && (
+            <CartButton
+              showCartModal={props.showCartModal}
+              handleCartModal={props.handleCartModal}
+            />
+          )}
+          {props.isLoggedIn && (
+            <Button
+              variant="outline-secondary"
+              className="mx-5"
+              onClick={handleLogout}
+            >
+              LOGOUT
+            </Button>
+          )}
           <Modal show={props.showCartModal} onHide={props.handleCartModal}>
             <Modal.Header closeButton={true}>
               <Modal.Title>Cart</Modal.Title>

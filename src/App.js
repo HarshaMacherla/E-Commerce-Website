@@ -27,6 +27,8 @@ const App = () => {
       <NavigationBar
         handleCartModal={handleCartModal}
         showCartModal={showCartModal}
+        isLoggedIn={isLoggedIn}
+        setToken={setToken}
       />
       <GenericHeader />
       <Switch>
@@ -54,6 +56,9 @@ const App = () => {
         </Route>
         <Route path="/:productId" exact>
           <ProductDetails />
+        </Route>
+        <Route path="*">
+          <Redirect to="/login" />
         </Route>
       </Switch>
     </CartContextWrapper>
