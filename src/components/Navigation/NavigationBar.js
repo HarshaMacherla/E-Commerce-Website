@@ -59,6 +59,18 @@ const NavigationBar = (props) => {
             >
               CONTACT US
             </NavLink>
+            <NavLink
+              to="/login"
+              style={{
+                color: "white",
+                textDecoration: "none",
+                fontSize: "larger",
+                margin: "0px 10px",
+                padding: "2px 5px",
+              }}
+            >
+              LOGIN
+            </NavLink>
           </Nav>
           <CartButton
             showCartModal={props.showCartModal}

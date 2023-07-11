@@ -8,9 +8,15 @@ import GenericHeader from "./components/Header/GenericHeader";
 import Home from "./pages/Home";
 import ContactUs from "./pages/ContactUs";
 import ProductDetails from "./components/Products/ProductDetails";
+import LoginPage from "./pages/LoginPage";
+import { Redirect } from "react-router-dom/cjs/react-router-dom.min";
 
 const App = () => {
   const [showCartModal, setShowCartModal] = useState(false);
+
+  const [token, setToken] = useState(localStorage.getItem("token"));
+
+  const isLoggedIn = !!token;
 
   const handleCartModal = () => {
     setShowCartModal((prevState) => !prevState);
@@ -25,10 +31,13 @@ const App = () => {
       <GenericHeader />
       <Switch>
         <Route path="/" exact>
-          <Products
-            handleCartModal={handleCartModal}
-            showCartModal={showCartModal}
-          />
+          {isLoggedIn && (
+            <Products
+              handleCartModal={handleCartModal}
+              showCartModal={showCartModal}
+            />
+          )}
+          {!isLoggedIn && <Redirect to="login" />}
         </Route>
         <Route path="/home" exact>
           <Home />
@@ -38,6 +47,10 @@ const App = () => {
         </Route>
         <Route path="/contactus" exact>
           <ContactUs />
+        </Route>
+        <Route path="/login" exact>
+          {!isLoggedIn && <LoginPage setToken={setToken} />}
+          {isLoggedIn && <Redirect to="/" />}
         </Route>
         <Route path="/:productId" exact>
           <ProductDetails />
