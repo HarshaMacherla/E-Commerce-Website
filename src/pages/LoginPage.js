@@ -1,9 +1,12 @@
 import React, { useRef } from "react";
 import { Form, Button, Card } from "react-bootstrap";
+import CartContext from "../cart-context/cart-context";
 
-const LoginPage = (props) => {
+const LoginPage = () => {
   const emailRef = useRef();
   const passwordRef = useRef();
+
+  const { setIsLoggedIn } = React.useContext(CartContext);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -29,9 +32,10 @@ const LoginPage = (props) => {
         throw new Error(errorResponse.error.message);
       }
 
+      setIsLoggedIn(true);
       const data = await response.json();
       localStorage.setItem("token", JSON.stringify(data.idToken));
-      props.setToken(data.idToken);
+      localStorage.setItem("userId", email.replace(/[.@]/g, ""));
     } catch (error) {
       alert(error.message);
     }

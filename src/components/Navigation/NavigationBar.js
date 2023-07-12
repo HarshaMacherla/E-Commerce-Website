@@ -4,11 +4,16 @@ import CartButton from "../Cart/CartButton";
 import { NavLink } from "react-router-dom";
 import { Modal, Button } from "react-bootstrap";
 import Cart from "../Cart/Cart";
+import CartContext from "../../cart-context/cart-context";
 
-const NavigationBar = (props) => {
+const NavigationBar = () => {
+  const { isLoggedIn, setIsLoggedIn, showCartModal, handleCartModal } =
+    React.useContext(CartContext);
+
   const handleLogout = () => {
-    props.setToken(null);
     localStorage.removeItem("token");
+    localStorage.removeItem("userId");
+    setIsLoggedIn(false);
   };
 
   return (
@@ -64,7 +69,7 @@ const NavigationBar = (props) => {
             >
               CONTACT US
             </NavLink>
-            {!props.isLoggedIn && (
+            {!isLoggedIn && (
               <NavLink
                 to="/login"
                 style={{
@@ -79,13 +84,13 @@ const NavigationBar = (props) => {
               </NavLink>
             )}
           </Nav>
-          {props.isLoggedIn && (
+          {isLoggedIn && (
             <CartButton
-              showCartModal={props.showCartModal}
-              handleCartModal={props.handleCartModal}
+              showCartModal={showCartModal}
+              handleCartModal={handleCartModal}
             />
           )}
-          {props.isLoggedIn && (
+          {isLoggedIn && (
             <Button
               variant="outline-secondary"
               className="mx-5"
@@ -94,7 +99,7 @@ const NavigationBar = (props) => {
               LOGOUT
             </Button>
           )}
-          <Modal show={props.showCartModal} onHide={props.handleCartModal}>
+          <Modal show={showCartModal} onHide={handleCartModal}>
             <Modal.Header closeButton={true}>
               <Modal.Title>Cart</Modal.Title>
             </Modal.Header>

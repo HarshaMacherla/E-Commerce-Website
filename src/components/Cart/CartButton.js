@@ -5,12 +5,17 @@ import CartContext from "../../cart-context/cart-context";
 const CartButton = (props) => {
   const { cartState } = useContext(CartContext);
 
+  const countStyling = {
+    marginLeft: "8px",
+    backgroundColor: "#404040",
+    borderRadius: "5px",
+    padding: "2px 5px",
+  };
+
   return (
     <>
       <Button variant="secondary" onClick={props.handleCartModal}>
-        {cartState.totalItemsCount > 0
-          ? `Cart ${cartState.totalItemsCount}`
-          : "Cart"}
+        Cart <span style={countStyling}>{cartState.totalItemsInCart}</span>
       </Button>
     </>
   );

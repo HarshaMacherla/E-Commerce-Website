@@ -1,44 +1,25 @@
-import React, { useState } from "react";
+import React from "react";
 import NavigationBar from "./components/Navigation/NavigationBar";
-import { CartContextWrapper } from "./cart-context/cart-context";
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch, Redirect } from "react-router-dom";
 import Products from "./pages/Products";
 import About from "./pages/About";
-import GenericHeader from "./components/Header/GenericHeader";
 import Home from "./pages/Home";
 import ContactUs from "./pages/ContactUs";
 import ProductDetails from "./components/Products/ProductDetails";
+import GenericHeader from "./components/Header/GenericHeader";
 import LoginPage from "./pages/LoginPage";
-import { Redirect } from "react-router-dom/cjs/react-router-dom.min";
+import CartContext from "./cart-context/cart-context";
 
 const App = () => {
-  const [showCartModal, setShowCartModal] = useState(false);
-
-  const [token, setToken] = useState(localStorage.getItem("token"));
-
-  const isLoggedIn = !!token;
-
-  const handleCartModal = () => {
-    setShowCartModal((prevState) => !prevState);
-  };
+  const { isLoggedIn } = React.useContext(CartContext);
 
   return (
-    <CartContextWrapper>
-      <NavigationBar
-        handleCartModal={handleCartModal}
-        showCartModal={showCartModal}
-        isLoggedIn={isLoggedIn}
-        setToken={setToken}
-      />
+    <>
+      <NavigationBar />
       <GenericHeader />
       <Switch>
         <Route path="/" exact>
-          {isLoggedIn && (
-            <Products
-              handleCartModal={handleCartModal}
-              showCartModal={showCartModal}
-            />
-          )}
+          {isLoggedIn && <Products />}
           {!isLoggedIn && <Redirect to="login" />}
         </Route>
         <Route path="/home" exact>
@@ -51,7 +32,7 @@ const App = () => {
           <ContactUs />
         </Route>
         <Route path="/login" exact>
-          {!isLoggedIn && <LoginPage setToken={setToken} />}
+          {!isLoggedIn && <LoginPage />}
           {isLoggedIn && <Redirect to="/" />}
         </Route>
         <Route path="/:productId" exact>
@@ -61,7 +42,7 @@ const App = () => {
           <Redirect to="/login" />
         </Route>
       </Switch>
-    </CartContextWrapper>
+    </>
   );
 };
 

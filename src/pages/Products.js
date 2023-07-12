@@ -2,8 +2,11 @@ import React from "react";
 import { Button, Container } from "react-bootstrap";
 import Albums from "../components/Products/Albums";
 import OnlineProducts from "../components/Products/OnlineProducts";
+import CartContext from "../cart-context/cart-context";
 
-const Products = (props) => {
+const Products = () => {
+  const { handleCartModal } = React.useContext(CartContext);
+
   return (
     <Container>
       <div className="mb-5">
@@ -20,7 +23,7 @@ const Products = (props) => {
             color: "skyblue",
             fontWeight: "bold",
           }}
-          onClick={props.handleCartModal}
+          onClick={handleCartModal}
         >
           See the Cart
         </Button>

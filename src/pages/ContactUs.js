@@ -27,13 +27,14 @@ const ContactUs = () => {
         }
       );
 
-      if (response.ok) {
-        console.log("Form submitted successfully!");
-      } else {
-        console.error("Form submission failed.");
+      if (!response.ok) {
+        const errorResponse = await response.json();
+        throw new Error(errorResponse.error.message);
       }
+
+      alert("Form Submitted Successfully");
     } catch (error) {
-      console.error("Error:", error);
+      console.error(error.message);
     }
   };
 

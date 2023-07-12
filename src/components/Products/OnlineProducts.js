@@ -5,10 +5,40 @@ import CartContext from "../../cart-context/cart-context";
 import { NavLink } from "react-router-dom";
 
 const OnlineProducts = () => {
-  const { cartState } = useContext(CartContext);
+  const { cartState, userId } = useContext(CartContext);
 
-  const handleClick = (product) => {
-    cartState.addToCart(product);
+  const handleClick = async (product) => {
+    const index = cartState.cart.findIndex(
+      (item) => item.name === product.name
+    );
+    if (index !== -1) {
+      alert("ITEM ALREADY EXISTS IN THE CART");
+      return;
+    }
+
+    try {
+      const response = await fetch(
+        `https://crudcrud.com/api/d840d45ef0fe46ab805426538cf292d1/${userId}`,
+        {
+          method: "POST",
+          body: JSON.stringify(product),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      if (!response.ok) {
+        const errorResponse = await response.json();
+        throw new Error(errorResponse.error.message);
+      }
+
+      const createdProduct = await response.json();
+      const productId = createdProduct._id;
+      cartState.addToCart({ _id: productId, ...product });
+    } catch (error) {
+      alert(error.message);
+    }
   };
 
   return (

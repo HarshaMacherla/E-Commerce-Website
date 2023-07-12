@@ -1,14 +1,45 @@
-import React, { useContext } from "react";
+import React from "react";
 import { Container, Row, Col, Button } from "react-bootstrap";
 import productsArr from "./ProductsArray";
 import CartContext from "../../cart-context/cart-context";
 
 const Albums = () => {
-  const { cartState } = useContext(CartContext);
+  const { cartState, userId } = React.useContext(CartContext);
 
-  const handleClick = (product) => {
-    cartState.addToCart(product);
+  const handleClick = async (product) => {
+    const index = cartState.cart.findIndex(
+      (item) => item.name === product.name
+    );
+    if (index !== -1) {
+      alert("ITEM ALREADY EXISTS IN THE CART");
+      return;
+    }
+
+    try {
+      const response = await fetch(
+        `https://crudcrud.com/api/d840d45ef0fe46ab805426538cf292d1/${userId}`,
+        {
+          method: "POST",
+          body: JSON.stringify(product),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      if (!response.ok) {
+        const errorResponse = await response.json();
+        throw new Error(errorResponse.error.message);
+      }
+
+      const createdProduct = await response.json();
+      const productId = createdProduct._id;
+      cartState.addToCart({ _id: productId, ...product });
+    } catch (error) {
+      alert(error.message);
+    }
   };
+
   return (
     <Container fluid className="text-center">
       <h1 className="p-3" style={{ fontFamily: "Arial", fontWeight: "bold" }}>
@@ -23,10 +54,9 @@ const Albums = () => {
             <Button
               onClick={() =>
                 handleClick({
+                  ...productsArr[0],
                   name: "Album 1",
-                  title: productsArr[0].title,
-                  url: productsArr[0].imageUrl,
-                  price: productsArr[0].price,
+                  quantity: 1,
                 })
               }
             >
@@ -40,10 +70,9 @@ const Albums = () => {
             <Button
               onClick={() =>
                 handleClick({
+                  ...productsArr[1],
                   name: "Album 2",
-                  title: productsArr[1].title,
-                  url: productsArr[1].imageUrl,
-                  price: productsArr[1].price,
+                  quantity: 1,
                 })
               }
             >
@@ -59,10 +88,9 @@ const Albums = () => {
             <Button
               onClick={() =>
                 handleClick({
+                  ...productsArr[2],
                   name: "Album 3",
-                  title: productsArr[2].title,
-                  url: productsArr[2].imageUrl,
-                  price: productsArr[2].price,
+                  quantity: 1,
                 })
               }
             >
@@ -76,10 +104,9 @@ const Albums = () => {
             <Button
               onClick={() =>
                 handleClick({
+                  ...productsArr[3],
                   name: "Album 4",
-                  title: productsArr[3].title,
-                  url: productsArr[3].imageUrl,
-                  price: productsArr[3].price,
+                  quantity: 1,
                 })
               }
             >
