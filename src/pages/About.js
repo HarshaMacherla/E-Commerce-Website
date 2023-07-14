@@ -3,7 +3,7 @@ import bandImage from "../store/Band Members.png";
 
 const About = () => {
   return (
-    <main className="container">
+    <main className="container mt-5">
       <h1 className="text-center">About</h1>
       <div className="d-flex">
         <img
