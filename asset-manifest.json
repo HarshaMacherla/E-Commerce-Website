@@ -1,0 +1,24 @@
+{
+  "files": {
+    "main.css": "/E-Commerce-Website/static/css/main.5cd64d03.css",
+    "main.js": "/E-Commerce-Website/static/js/main.6c124cb3.js",
+    "static/js/266.f3722c80.chunk.js": "/E-Commerce-Website/static/js/266.f3722c80.chunk.js",
+    "static/js/354.e1fcd924.chunk.js": "/E-Commerce-Website/static/js/354.e1fcd924.chunk.js",
+    "static/js/385.6d0ff8c4.chunk.js": "/E-Commerce-Website/static/js/385.6d0ff8c4.chunk.js",
+    "static/media/Band Members.png": "/E-Commerce-Website/static/media/Band Members.c0d5ce252195bdccffa5.png",
+    "static/media/Product4.jpg": "/E-Commerce-Website/static/media/Product4.83fde0afe5d1e5fe63a6.jpg",
+    "static/media/Product3.jpg": "/E-Commerce-Website/static/media/Product3.f3d72f4672a3fe8e6aa3.jpg",
+    "static/media/Product1.jpg": "/E-Commerce-Website/static/media/Product1.adb17abcf95c4a8849a7.jpg",
+    "static/media/Product2.jpg": "/E-Commerce-Website/static/media/Product2.9cbe15df67ddad8a10a8.jpg",
+    "index.html": "/E-Commerce-Website/index.html",
+    "main.5cd64d03.css.map": "/E-Commerce-Website/static/css/main.5cd64d03.css.map",
+    "main.6c124cb3.js.map": "/E-Commerce-Website/static/js/main.6c124cb3.js.map",
+    "266.f3722c80.chunk.js.map": "/E-Commerce-Website/static/js/266.f3722c80.chunk.js.map",
+    "354.e1fcd924.chunk.js.map": "/E-Commerce-Website/static/js/354.e1fcd924.chunk.js.map",
+    "385.6d0ff8c4.chunk.js.map": "/E-Commerce-Website/static/js/385.6d0ff8c4.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.5cd64d03.css",
+    "static/js/main.6c124cb3.js"
+  ]
+}
